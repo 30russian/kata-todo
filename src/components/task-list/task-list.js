@@ -1,7 +1,7 @@
 import Task from '../task';
 
-const TaskList = (props) => {
-  const listElements = props.tasks.map(task => <Task completed={task.completed} description={task.description}></Task>);
+const TaskList = ({tasks}) => {
+  const listElements = tasks.map(task => <Task key={task.id} completed={task.completed} description={task.description}></Task>);
 
   return (
     <ul className="todo-list">

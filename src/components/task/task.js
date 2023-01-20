@@ -1,10 +1,10 @@
-const Task = (props) => {
+const Task = ({completed, description}) => {
   return (
-    <li className={props.completed && "completed"}>
+    <li className={completed && "completed"}>
       <div className="view">
         <input className="toggle" type="checkbox" />
           <label>
-            <span className="description">Completed task</span>
+            <span className="description">{description}</span>
             <span className="created">created 17 seconds ago</span>
           </label>
           <button className="icon icon-edit"></button>
