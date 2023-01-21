@@ -12,6 +12,21 @@ export default class App extends Component {
     ]
   };
 
+  onComplete = (id) => {
+    this.setState((state) => {
+      const { tasks } = state;
+      const idx = tasks.findIndex(el => el.id === id);
+      const newTask = {...tasks[idx], completed: !tasks[idx].completed};
+      const newTasks = [
+        ...tasks.slice(0, idx),
+        newTask,
+        ...tasks.slice(idx + 1)
+      ];
+
+      return {tasks: newTasks};
+    });
+  };
+
   onDelete = (id) => {
     this.setState((state) => {
       const newTasks = [...state.tasks];
@@ -26,7 +41,7 @@ export default class App extends Component {
       <section className="todoapp">
         <NewTaskForm />
         <section className="main">
-          <TaskList tasks={this.state.tasks} onDelete={this.onDelete} />
+          <TaskList tasks={this.state.tasks} onDelete={this.onDelete} onComplete={this.onComplete}/>
           <Footer />
         </section>
       </section>
