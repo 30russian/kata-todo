@@ -1,17 +1,35 @@
 import TaskList from '../task-list';
 import Footer from '../footer';
 import NewTaskForm from '../new-task-form';
+import { Component } from 'react'
 
-const App = (props) => {
-  return (
-    <section className="todoapp">
-      <NewTaskForm />
-      <section className="main">
-        <TaskList {...props} />
-        <Footer />
+export default class App extends Component {
+  state = {
+    tasks: [
+      {id: 1, description: 'Completed task', completed: true},
+      {id: 2, description: 'Editing task'},
+      {id: 3, description: 'Active task'}
+    ]
+  };
+
+  onDelete = (id) => {
+    this.setState((state) => {
+      const newTasks = [...state.tasks];
+      const idx = newTasks.findIndex(el => el.id === id);
+      newTasks.splice(idx, 1);
+      return {tasks: newTasks};
+    });
+  };
+
+  render() {
+    return (
+      <section className="todoapp">
+        <NewTaskForm />
+        <section className="main">
+          <TaskList tasks={this.state.tasks} onDelete={this.onDelete} />
+          <Footer />
+        </section>
       </section>
-    </section>
-  );
+    );
+  }
 };
-
-export default App;
