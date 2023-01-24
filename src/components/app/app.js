@@ -4,12 +4,19 @@ import NewTaskForm from '../new-task-form';
 import { Component } from 'react'
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.lastId = 100;
+  }
+
   state = {
     tasks: [
       {id: 1, description: 'Completed task', completed: true},
       {id: 2, description: 'Editing task'},
       {id: 3, description: 'Active task'}
-    ]
+    ],
+    filter: 'all'
   };
 
   onComplete = (id) => {
@@ -36,13 +43,36 @@ export default class App extends Component {
     });
   };
 
+  onNewTask = (description) => {
+    this.setState((state) => {
+      const newTasks = [...state.tasks];
+      newTasks.push({id: ++this.lastId, description});
+      return {tasks: newTasks};
+    });
+  };
+
+  onFilterClicked = (filter) => {
+    this.setState({filter});
+  };
+
+  onClearCompleted = () => {
+    this.setState((state) => {
+      return {tasks: [...state.tasks].filter(item => !item.completed)};
+    });
+  };
+
   render() {
     return (
       <section className="todoapp">
-        <NewTaskForm />
+        <NewTaskForm onNewTask={this.onNewTask} />
         <section className="main">
-          <TaskList tasks={this.state.tasks} onDelete={this.onDelete} onComplete={this.onComplete}/>
-          <Footer />
+          <TaskList tasks={this.state.tasks}
+                    filter={this.state.filter}
+                    onDelete={this.onDelete}
+                    onComplete={this.onComplete}/>
+          <Footer tasks={this.state.tasks}
+                  onFilterClicked={this.onFilterClicked}
+                  onClearCompleted={this.onClearCompleted} />
         </section>
       </section>
     );
