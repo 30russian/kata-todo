@@ -1,8 +1,13 @@
 import {Component} from 'react';
+import PropTypes from 'prop-types'
 
 export default class NewTaskForm extends Component {
   state = {
     description: ""
+  };
+
+  static propTypes = {
+    onNewTask: PropTypes.func.isRequired
   };
 
   onDescriptionChange = (event) => {
@@ -11,6 +16,8 @@ export default class NewTaskForm extends Component {
 
   onNewTaskSubmit = (event) => {
     this.props.onNewTask(this.state.description);
+    this.setState({description: ''});
+
     event.preventDefault();
   };
 

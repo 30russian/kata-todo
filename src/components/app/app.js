@@ -11,11 +11,7 @@ export default class App extends Component {
   }
 
   state = {
-    tasks: [
-      {id: 1, description: 'Completed task', completed: true},
-      {id: 2, description: 'Editing task'},
-      {id: 3, description: 'Active task'}
-    ],
+    tasks: [],
     filter: 'all'
   };
 
@@ -46,7 +42,7 @@ export default class App extends Component {
   onNewTask = (description) => {
     this.setState((state) => {
       const newTasks = [...state.tasks];
-      newTasks.push({id: ++this.lastId, description});
+      newTasks.push({id: ++this.lastId, description, completed: false, created: new Date()});
       return {tasks: newTasks};
     });
   };

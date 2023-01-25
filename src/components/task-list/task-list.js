@@ -1,4 +1,5 @@
 import Task from '../task'
+import PropTypes from 'prop-types'
 
 const TaskList = ({ tasks, onDelete, onComplete, filter }) => {
   if (filter !== 'all') {
@@ -16,5 +17,17 @@ const TaskList = ({ tasks, onDelete, onComplete, filter }) => {
     </ul>
   )
 }
+
+TaskList.defaultProps = {
+  tasks: [],
+  filter: 'all'
+};
+
+TaskList.propTypes = {
+  tasks: PropTypes.array,
+  filter: PropTypes.string,
+  onDelete: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired
+};
 
 export default TaskList

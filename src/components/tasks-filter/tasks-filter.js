@@ -1,8 +1,13 @@
 import {Component} from 'react';
+import PropTypes from 'prop-types'
 
 export default class TasksFilter extends Component {
   state = {
     filter: 'all'
+  };
+
+  static propTypes = {
+    onFilterClicked: PropTypes.func.isRequired
   };
 
   onFilterClicked = (filter) => {
