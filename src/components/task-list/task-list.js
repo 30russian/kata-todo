@@ -1,5 +1,7 @@
-import Task from '../task'
-import PropTypes from 'prop-types'
+import Task from '../task';
+import PropTypes from 'prop-types';
+
+import './task-list.scss';
 
 const TaskList = ({ tasks, onDelete, onComplete, filter }) => {
   if (filter !== 'all') {
@@ -12,11 +14,11 @@ const TaskList = ({ tasks, onDelete, onComplete, filter }) => {
                                                onComplete={onComplete} />);
 
   return (
-    <ul className='todo-list'>
+    <ul className='task-list'>
       {listElements}
     </ul>
-  )
-}
+  );
+};
 
 TaskList.defaultProps = {
   tasks: [],
@@ -30,4 +32,4 @@ TaskList.propTypes = {
   onComplete: PropTypes.func.isRequired
 };
 
-export default TaskList
+export default TaskList;

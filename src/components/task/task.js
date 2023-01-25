@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import './task.scss';
 
 import { formatDistanceToNow } from 'date-fns';
 
@@ -14,15 +15,21 @@ export default class Task extends Component {
   render() {
     const { task, onComplete, onDelete } = this.props;
     return (
-      <li className={task.completed ? "completed" : undefined}>
-        <div className="view">
-          <input onChange={() => onComplete(task.id)} className="toggle" type="checkbox" checked={Boolean(task.completed)} />
+      <li className={task.completed ? 'task task--completed' : 'task'}>
+        <div className='task__view'>
+          <input onChange={() => onComplete(task.id)}
+                 className='task__toggle'
+                 type='checkbox'
+                 checked={Boolean(task.completed)} />
           <label>
-            <span className="description">{task.description}</span>
-            <span className="created">created {formatDistanceToNow(task.created, {addSuffix: true, includeSeconds: true})}</span>
+            <span className='task__description'>{task.description}</span>
+            <span className='task__created'>created {formatDistanceToNow(task.created, {
+              addSuffix: true,
+              includeSeconds: true
+            })}</span>
           </label>
-          <button className="icon icon-edit"></button>
-          <button onClick={() => onDelete(task.id)} className="icon icon-destroy"></button>
+          <button className='task__icon task__icon--edit'></button>
+          <button onClick={() => onDelete(task.id)} className='task__icon task__icon--destroy'></button>
         </div>
       </li>
     );
