@@ -4,7 +4,7 @@ import TaskList from '../task-list';
 import Footer from '../footer';
 import NewTaskForm from '../new-task-form';
 
-import './app.scss'
+import './app.scss';
 
 export default class App extends Component {
   constructor(props) {
