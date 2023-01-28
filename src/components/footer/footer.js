@@ -1,28 +1,28 @@
+import PropTypes from 'prop-types';
+
 import TasksFilter from '../tasks-filter';
 import './footer.scss';
 
-import PropTypes from 'prop-types';
-
 const Footer = ({ tasks, onFilterClicked, onClearCompleted }) => {
   return (
-    <footer className='footer'>
-      <span className='footer__tasks-count'>{tasks.filter(item => !item.completed).length} items left</span>
+    <footer className="footer">
+      <span className="footer__tasks-count">{tasks.filter((item) => !item.completed).length} items left</span>
       <TasksFilter onFilterClicked={onFilterClicked} />
-      <button onClick={onClearCompleted}
-              className='footer__clear-completed'>Clear completed
+      <button onClick={onClearCompleted} className="footer__clear-completed">
+        Clear completed
       </button>
     </footer>
   );
 };
 
 Footer.defaultProps = {
-  tasks: []
+  tasks: [],
 };
 
 Footer.propTypes = {
   tasks: PropTypes.array,
   onFilterClicked: PropTypes.func.isRequired,
-  onClearCompleted: PropTypes.func.isRequired
+  onClearCompleted: PropTypes.func.isRequired,
 };
 
 export default Footer;

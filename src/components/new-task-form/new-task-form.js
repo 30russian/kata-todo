@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 
 export default class NewTaskForm extends Component {
   state = {
-    description: ''
+    description: '',
   };
 
   static propTypes = {
-    onNewTask: PropTypes.func.isRequired
+    onNewTask: PropTypes.func.isRequired,
   };
 
   onDescriptionChange = (event) => {
@@ -25,15 +25,18 @@ export default class NewTaskForm extends Component {
 
   render() {
     return (
-      <header className='new-task-form'>
+      <header className="new-task-form">
         <h1>todos</h1>
         <form onSubmit={this.onNewTaskSubmit}>
-          <input className='new-task-form__description' onChange={this.onDescriptionChange}
-                 placeholder='What needs to be done?'
-                 value={this.state.description}
-                 autoFocus />
+          <input
+            className="new-task-form__description"
+            onChange={this.onDescriptionChange}
+            placeholder="What needs to be done?"
+            value={this.state.description}
+            autoFocus
+          />
         </form>
       </header>
     );
   }
-};
+}
