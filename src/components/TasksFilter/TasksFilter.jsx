@@ -22,6 +22,7 @@ export default class TasksFilter extends Component {
       <ul className="tasks-filter">
         <li>
           <button
+            type="button"
             onClick={() => this.onFilterClicked('all')}
             className={
               this.state.filter === 'all'
@@ -34,6 +35,7 @@ export default class TasksFilter extends Component {
         </li>
         <li>
           <button
+            type="button"
             onClick={() => this.onFilterClicked('active')}
             className={
               this.state.filter === 'active'
@@ -46,6 +48,7 @@ export default class TasksFilter extends Component {
         </li>
         <li>
           <button
+            type="button"
             onClick={() => this.onFilterClicked('completed')}
             className={
               this.state.filter === 'completed'

@@ -56,8 +56,8 @@ export default class Task extends Component {
               })}
             </span>
           </label>
-          <button onClick={() => onEdit(task.id)} className="task__icon task__icon--edit"></button>
-          <button onClick={() => onDelete(task.id)} className="task__icon task__icon--destroy"></button>
+          <button type="button" onClick={() => onEdit(task.id)} className="task__icon task__icon--edit"></button>
+          <button type="button" onClick={() => onDelete(task.id)} className="task__icon task__icon--destroy"></button>
         </div>
         <form onSubmit={this.onEditFinished}>
           <input
