@@ -1,4 +1,4 @@
-import './new-task-form.scss';
+import './NewTaskForm.scss';
 
 import { Component } from 'react';
 import PropTypes from 'prop-types';

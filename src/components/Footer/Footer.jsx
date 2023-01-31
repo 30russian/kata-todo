@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import TasksFilter from '../tasks-filter';
-import './footer.scss';
+import TasksFilter from '../TasksFilter';
+import './Footer.scss';
 
 const Footer = ({ tasks, onFilterClicked, onClearCompleted }) => {
   return (

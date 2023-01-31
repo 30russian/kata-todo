@@ -1,4 +1,4 @@
-import './tasks-filter.scss';
+import './TasksFilter.scss';
 
 import { Component } from 'react';
 import PropTypes from 'prop-types';

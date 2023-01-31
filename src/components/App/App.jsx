@@ -1,10 +1,10 @@
 import { Component } from 'react';
 
-import TaskList from '../task-list';
-import Footer from '../footer';
-import NewTaskForm from '../new-task-form';
+import TaskList from '../TaskList';
+import Footer from '../Footer';
+import NewTaskForm from '../NewTaskForm';
 
-import './app.scss';
+import './App.scss';
 
 export default class App extends Component {
   constructor(props) {

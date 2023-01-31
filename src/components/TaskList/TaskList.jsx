@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import Task from '../task';
+import Task from '../Task';
 
-import './task-list.scss';
+import './TaskList.scss';
 
 const TaskList = ({ tasks, filter, ...restProps }) => {
   if (filter !== 'all') {

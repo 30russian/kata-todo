@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import PropTypes from 'prop-types';
 
-import './task.scss';
+import './Task.scss';
 
 export default class Task extends Component {
   state = {
