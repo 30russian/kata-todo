@@ -4,14 +4,12 @@ import Task from '../task';
 
 import './task-list.scss';
 
-const TaskList = ({ tasks, onDelete, onComplete, filter }) => {
+const TaskList = ({ tasks, filter, ...restProps }) => {
   if (filter !== 'all') {
     tasks = tasks.filter((item) => (filter === 'completed' ? item.completed : !item.completed));
   }
 
-  const listElements = tasks.map((task) => (
-    <Task key={task.id} task={task} onDelete={onDelete} onComplete={onComplete} />
-  ));
+  const listElements = tasks.map((task) => <Task key={task.id} task={task} {...restProps} />);
 
   return <ul className="task-list">{listElements}</ul>;
 };
@@ -26,6 +24,8 @@ TaskList.propTypes = {
   filter: PropTypes.string,
   onDelete: PropTypes.func.isRequired,
   onComplete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onEditFinished: PropTypes.func.isRequired,
 };
 
 export default TaskList;
