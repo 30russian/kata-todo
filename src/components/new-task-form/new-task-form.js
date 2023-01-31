@@ -17,8 +17,11 @@ export default class NewTaskForm extends Component {
   };
 
   onNewTaskSubmit = (event) => {
-    this.props.onNewTask(this.state.description);
-    this.setState({ description: '' });
+    const description = this.state.description.trim();
+    if (description.length > 0) {
+      this.props.onNewTask(description);
+      this.setState({ description: '' });
+    }
 
     event.preventDefault();
   };

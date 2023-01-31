@@ -40,12 +40,13 @@ export default class Task extends Component {
       <li className={classList.join(' ')}>
         <div className="task__view">
           <input
+            id={`task${task.id}-complete-checkbox`}
             onChange={() => onComplete(task.id)}
             className="task__toggle"
             type="checkbox"
             checked={Boolean(task.completed)}
           />
-          <label>
+          <label htmlFor={`task${task.id}-complete-checkbox`}>
             <span className="task__description">{task.description}</span>
             <span className="task__created">
               created{' '}
