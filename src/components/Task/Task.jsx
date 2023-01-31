@@ -38,17 +38,17 @@ export default class Task extends Component {
     }
     return (
       <li className={classList.join(' ')}>
-        <div className="task__view">
+        <div className='task__view'>
           <input
             id={`task${task.id}-complete-checkbox`}
             onChange={() => onComplete(task.id)}
-            className="task__toggle"
-            type="checkbox"
+            className='task__toggle'
+            type='checkbox'
             checked={Boolean(task.completed)}
           />
           <label htmlFor={`task${task.id}-complete-checkbox`}>
-            <span className="task__description">{task.description}</span>
-            <span className="task__created">
+            <span className='task__description'>{task.description}</span>
+            <span className='task__created'>
               created{' '}
               {formatDistanceToNow(task.created, {
                 addSuffix: true,
@@ -56,18 +56,18 @@ export default class Task extends Component {
               })}
             </span>
           </label>
-          <button type="button" onClick={() => onEdit(task.id)} className="task__icon task__icon--edit"></button>
-          <button type="button" onClick={() => onDelete(task.id)} className="task__icon task__icon--destroy"></button>
+          <button type='button' onClick={() => onEdit(task.id)} className='task__icon task__icon--edit'></button>
+          <button type='button' onClick={() => onDelete(task.id)} className='task__icon task__icon--destroy'></button>
         </div>
         <form onSubmit={this.onEditFinished}>
           <input
-            id="task-edit-field-id"
-            type="text"
+            id='task-edit-field-id'
+            type='text'
             className={task.editing ? 'task__edit-field' : 'hidden'}
             onChange={this.onDescriptionChange}
             value={this.state.editingDescription}
           />
-          <label htmlFor="task-edit-field-id" className="visually-hidden">
+          <label htmlFor='task-edit-field-id' className='visually-hidden'>
             Field for editing the task description
           </label>
         </form>

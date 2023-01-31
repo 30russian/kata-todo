@@ -28,18 +28,18 @@ export default class NewTaskForm extends Component {
 
   render() {
     return (
-      <header className="new-task-form">
+      <header className='new-task-form'>
         <h1>todos</h1>
         <form onSubmit={this.onNewTaskSubmit}>
           <input
-            id="new-task-form-id"
-            className="new-task-form__description"
+            id='new-task-form-id'
+            className='new-task-form__description'
             onChange={this.onDescriptionChange}
-            placeholder="What needs to be done?"
+            placeholder='What needs to be done?'
             value={this.state.description}
             autoFocus
           />
-          <label htmlFor="new-task-form-id" className="visually-hidden">
+          <label htmlFor='new-task-form-id' className='visually-hidden'>
             Field containing task description
           </label>
         </form>

@@ -5,10 +5,10 @@ import './Footer.scss';
 
 const Footer = ({ tasks, onFilterClicked, onClearCompleted }) => {
   return (
-    <footer className="footer">
-      <span className="footer__tasks-count">{tasks.filter((item) => !item.completed).length} items left</span>
+    <footer className='footer'>
+      <span className='footer__tasks-count'>{tasks.filter((item) => !item.completed).length} items left</span>
       <TasksFilter onFilterClicked={onFilterClicked} />
-      <button type="button" onClick={onClearCompleted} className="footer__clear-completed">
+      <button type='button' onClick={onClearCompleted} className='footer__clear-completed'>
         Clear completed
       </button>
     </footer>

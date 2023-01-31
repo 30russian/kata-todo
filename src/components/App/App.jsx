@@ -90,9 +90,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <section className="app">
+      <section className='app'>
         <NewTaskForm onNewTask={this.onNewTask} />
-        <section className="app__main-section">
+        <section className='app__main-section'>
           <TaskList
             tasks={this.state.tasks}
             filter={this.state.filter}

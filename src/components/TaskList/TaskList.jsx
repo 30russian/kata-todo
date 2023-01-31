@@ -11,7 +11,7 @@ const TaskList = ({ tasks, filter, ...restProps }) => {
 
   const listElements = tasks.map((task) => <Task key={task.id} task={task} {...restProps} />);
 
-  return <ul className="task-list">{listElements}</ul>;
+  return <ul className='task-list'>{listElements}</ul>;
 };
 
 TaskList.defaultProps = {

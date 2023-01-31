@@ -5,7 +5,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "format": "prettier --write src/**/*.js",
+    "format": "prettier --write **/*.{html,css,scss,js,jsx}",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "prepare": "husky install",

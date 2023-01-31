@@ -19,43 +19,40 @@ export default class TasksFilter extends Component {
 
   render() {
     return (
-      <ul className="tasks-filter">
+      <ul className='tasks-filter'>
         <li>
           <button
-            type="button"
+            type='button'
             onClick={() => this.onFilterClicked('all')}
             className={
               this.state.filter === 'all'
                 ? 'tasks-filter__button tasks-filter__button--selected'
                 : 'tasks-filter__button'
-            }
-          >
+            }>
             All
           </button>
         </li>
         <li>
           <button
-            type="button"
+            type='button'
             onClick={() => this.onFilterClicked('active')}
             className={
               this.state.filter === 'active'
                 ? 'tasks-filter__button tasks-filter__button--selected'
                 : 'tasks-filter__button'
-            }
-          >
+            }>
             Active
           </button>
         </li>
         <li>
           <button
-            type="button"
+            type='button'
             onClick={() => this.onFilterClicked('completed')}
             className={
               this.state.filter === 'completed'
                 ? 'tasks-filter__button tasks-filter__button--selected'
                 : 'tasks-filter__button'
-            }
-          >
+            }>
             Completed
           </button>
         </li>
