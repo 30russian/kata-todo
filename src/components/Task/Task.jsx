@@ -61,11 +61,15 @@ export default class Task extends Component {
         </div>
         <form onSubmit={this.onEditFinished}>
           <input
+            id="task-edit-field-id"
             type="text"
             className={task.editing ? 'task__edit-field' : 'hidden'}
             onChange={this.onDescriptionChange}
             value={this.state.editingDescription}
           />
+          <label htmlFor="task-edit-field-id" className="visually-hidden">
+            Field for editing the task description
+          </label>
         </form>
       </li>
     );

@@ -32,12 +32,16 @@ export default class NewTaskForm extends Component {
         <h1>todos</h1>
         <form onSubmit={this.onNewTaskSubmit}>
           <input
+            id="new-task-form-id"
             className="new-task-form__description"
             onChange={this.onDescriptionChange}
             placeholder="What needs to be done?"
             value={this.state.description}
             autoFocus
           />
+          <label htmlFor="new-task-form-id" className="visually-hidden">
+            Field containing task description
+          </label>
         </form>
       </header>
     );
