@@ -83,9 +83,7 @@ export default class App extends Component {
   };
 
   onClearCompleted = () => {
-    this.setState((state) => {
-      return { tasks: [...state.tasks].filter((item) => !item.completed) };
-    });
+    this.setState((state) => ({ tasks: [...state.tasks].filter((item) => !item.completed) }));
   };
 
   render() {
