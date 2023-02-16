@@ -21,10 +21,12 @@ export default class App extends Component {
     });
     this.setState({ tasks });
 
-    this.lastId = Math.max.apply(
-      null,
-      tasks.map((task) => task.id)
-    );
+    if (tasks.length > 0) {
+      this.lastId = Math.max.apply(
+        null,
+        tasks.map((task) => task.id)
+      );
+    }
   }
 
   componentDidMount() {
@@ -85,11 +87,28 @@ export default class App extends Component {
     });
   };
 
+  onTimerTicked = (id) => {
+    this.setState((state) => {
+      const { tasks } = state;
+      const idx = tasks.findIndex((el) => el.id === id);
+      const newTask = { ...tasks[idx] };
+      newTask.duration++;
+      const newTasks = [...tasks.slice(0, idx), newTask, ...tasks.slice(idx + 1)];
+
+      window.localStorage.setItem('tasks', JSON.stringify(newTasks));
+
+      return { tasks: newTasks };
+    });
+  };
+
   onDelete = (id) => {
     this.setState((state) => {
       const newTasks = [...state.tasks];
       const idx = newTasks.findIndex((el) => el.id === id);
       newTasks.splice(idx, 1);
+
+      window.localStorage.setItem('tasks', JSON.stringify(newTasks));
+
       return { tasks: newTasks };
     });
   };
@@ -131,6 +150,7 @@ export default class App extends Component {
             onComplete={this.onComplete}
             onEdit={this.onEdit}
             onEditFinished={this.onEditFinished}
+            onTimerTicked={this.onTimerTicked}
           />
           <Footer
             tasks={this.state.tasks}

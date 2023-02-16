@@ -10,6 +10,7 @@
     "lint:fix": "eslint **/*.{js,jsx} --fix",
     "prepare": "husky install",
     "start": "react-scripts start",
+    "deploy": "vercel --prod",
     "test": "react-scripts test"
   },
   "lint-staged": {

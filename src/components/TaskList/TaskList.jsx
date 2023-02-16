@@ -5,11 +5,14 @@ import Task from '../Task';
 import './TaskList.scss';
 
 const TaskList = ({ tasks, filter, ...restProps }) => {
-  if (filter !== 'all') {
-    tasks = tasks.filter((item) => (filter === 'completed' ? item.completed : !item.completed));
-  }
-
-  const listElements = tasks.map((task) => <Task key={task.id} task={task} {...restProps} />);
+  const listElements = tasks.map((task) => (
+    <Task
+      key={task.id}
+      task={task}
+      {...restProps}
+      hidden={(filter === 'active' && task.completed) || (filter === 'completed' && !task.completed)}
+    />
+  ));
 
   return <ul className='task-list'>{listElements}</ul>;
 };

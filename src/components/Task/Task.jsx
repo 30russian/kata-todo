@@ -13,11 +13,21 @@ export default class Task extends Component {
 
   static propTypes = {
     task: PropTypes.object.isRequired,
+    hidden: PropTypes.bool,
     onComplete: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
     onEditFinished: PropTypes.func.isRequired,
+    onTimerTicked: PropTypes.func.isRequired,
   };
+
+  static defaultProps = {
+    hidden: false,
+  };
+
+  componentWillUnmount() {
+    this.stopTimer();
+  }
 
   onDescriptionChange = (event) => {
     this.setState({ editingDescription: event.target.value });
@@ -29,14 +39,24 @@ export default class Task extends Component {
     event.preventDefault();
   };
 
-  startTimer() {
+  startTimer = () => {
+    const { onTimerTicked, task } = this.props;
     if (!this._timer) {
-      this._timer = setTimeout();
+      this._timer = setInterval(() => {
+        onTimerTicked(task.id);
+      }, 1000);
     }
-  }
+  };
+
+  stopTimer = () => {
+    if (this._timer) {
+      clearInterval(this._timer);
+      this._timer = null;
+    }
+  };
 
   render() {
-    const { task, onComplete, onDelete, onEdit } = this.props;
+    const { task, hidden, onComplete, onDelete, onEdit } = this.props;
     let classList = ['task'];
     if (task.completed) {
       classList.push('task--completed');
@@ -44,8 +64,14 @@ export default class Task extends Component {
     if (task.editing) {
       classList.push('task--editing');
     }
+
+    const minutes = Math.floor(task.duration / 60);
+    const seconds = task.duration % 60;
+    const spendTime =
+      minutes > 0 || seconds > 0 ? `${minutes}:${seconds.toLocaleString('en-US', { minimumIntegerDigits: 2 })}` : '';
+
     return (
-      <li className={classList.join(' ')}>
+      <li className={classList.join(' ')} hidden={hidden}>
         <div className='task__view'>
           <input
             id={`task${task.id}-complete-checkbox`}
@@ -57,9 +83,9 @@ export default class Task extends Component {
           <label htmlFor={`task${task.id}-complete-checkbox`}>
             <span className='task__title'>{task.description}</span>
             <div className='task__timer'>
-              <button className='task__icon task__icon--play'></button>
-              <button className='task__icon task__icon--pause'></button>
-              <span className='task__timer_time'>12:25</span>
+              <button className='task__icon task__icon--play' onClick={this.startTimer}></button>
+              <button className='task__icon task__icon--pause' onClick={this.stopTimer}></button>
+              <span className='task__timer_time'>{spendTime}</span>
             </div>
             <span className='task__description'>
               created{' '}
