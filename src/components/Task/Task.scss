@@ -10,12 +10,26 @@
     padding: 15px 85px 15px 60px;
   }
 
-  &__created {
+  &__view {
+    position: relative;
+  }
+
+  &__description {
     font-size: 13px;
     color: gray;
   }
 
-  &__description {
+  &__timer {
+    font-size: 13px;
+    color: gray;
+
+    &_time {
+      display: inline-block;
+      margin-left: 4px;
+    }
+  }
+
+  &__title {
     word-break: break-all;
     display: block;
     line-height: 1.2;
@@ -25,7 +39,7 @@
   }
 
   &--completed {
-    .task__description {
+    .task__title {
       color: #cdcdcd;
       text-decoration: line-through;
     }
@@ -109,14 +123,11 @@
   }
 
   &__icon {
-    position: absolute;
-    top: 0;
-    bottom: -3px;
     width: 30px;
     height: 40px;
     font-size: 34px;
     color: #cc9a9a;
-    margin: auto 0 11px;
+    margin: auto 0;
     transition: color 0.2s ease-out;
     cursor: pointer;
 
@@ -125,6 +136,9 @@
     }
 
     &--edit {
+      position: absolute;
+      top: 0;
+      bottom: -3px;
       font-size: 19px;
       right: 45px;
 
@@ -134,10 +148,33 @@
     }
 
     &--destroy {
+      position: absolute;
+      top: 0;
+      bottom: -3px;
       right: 10px;
 
       &:after {
         content: '×';
+      }
+    }
+
+    &--play {
+      font-size: 15px;
+      width: 18px;
+      height: 18px;
+
+      &:after {
+        content: '▶';
+      }
+    }
+
+    &--pause {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+
+      &:after {
+        content: '⏸';
       }
     }
   }

@@ -1,8 +1,12 @@
 .new-task-form {
-  &__description {
+  form {
+    display: flex;
+    margin-bottom: 0;
+  }
+
+  @mixin form-input {
     position: relative;
     margin: 0;
-    width: 100%;
     font-size: 24px;
     font-family: inherit;
     font-weight: inherit;
@@ -33,6 +37,19 @@
       font-weight: 300;
       color: rgba(0, 0, 0, 0.4);
     }
+  }
+
+  &__description {
+    @include form-input;
+
+    width: 70%;
+  }
+
+  &__timer {
+    @include form-input;
+
+    width: 15%;
+    padding-left: 16px;
   }
 
   h1 {

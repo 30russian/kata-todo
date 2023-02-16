@@ -9,6 +9,8 @@ export default class Task extends Component {
     editingDescription: this.props.task.description,
   };
 
+  _timer = null;
+
   static propTypes = {
     task: PropTypes.object.isRequired,
     onComplete: PropTypes.func.isRequired,
@@ -26,6 +28,12 @@ export default class Task extends Component {
 
     event.preventDefault();
   };
+
+  startTimer() {
+    if (!this._timer) {
+      this._timer = setTimeout();
+    }
+  }
 
   render() {
     const { task, onComplete, onDelete, onEdit } = this.props;
@@ -47,8 +55,13 @@ export default class Task extends Component {
             checked={Boolean(task.completed)}
           />
           <label htmlFor={`task${task.id}-complete-checkbox`}>
-            <span className='task__description'>{task.description}</span>
-            <span className='task__created'>
+            <span className='task__title'>{task.description}</span>
+            <div className='task__timer'>
+              <button className='task__icon task__icon--play'></button>
+              <button className='task__icon task__icon--pause'></button>
+              <span className='task__timer_time'>12:25</span>
+            </div>
+            <span className='task__description'>
               created{' '}
               {formatDistanceToNow(task.created, {
                 addSuffix: true,
@@ -66,6 +79,7 @@ export default class Task extends Component {
             className={task.editing ? 'task__edit-field' : 'hidden'}
             onChange={this.onDescriptionChange}
             value={this.state.editingDescription}
+            required
           />
           <label htmlFor='task-edit-field-id' className='visually-hidden'>
             Field for editing the task description

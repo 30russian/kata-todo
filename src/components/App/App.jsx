@@ -1,3 +1,4 @@
+import { parseISO } from 'date-fns';
 import { Component } from 'react';
 
 import TaskList from '../TaskList';
@@ -11,6 +12,27 @@ export default class App extends Component {
     super(props);
 
     this.lastId = 100;
+  }
+
+  fillTasksFromLS() {
+    const tasks = JSON.parse(window.localStorage.getItem('tasks') ?? '[]');
+    tasks.forEach((task) => {
+      task.created = parseISO(task.created);
+    });
+    this.setState({ tasks });
+
+    this.lastId = Math.max.apply(
+      null,
+      tasks.map((task) => task.id)
+    );
+  }
+
+  componentDidMount() {
+    this.fillTasksFromLS();
+
+    window.addEventListener('storage', () => {
+      this.fillTasksFromLS();
+    });
   }
 
   state = {
@@ -57,6 +79,8 @@ export default class App extends Component {
       const newTask = { ...tasks[idx], description, editing: false };
       const newTasks = [...tasks.slice(0, idx), newTask, ...tasks.slice(idx + 1)];
 
+      window.localStorage.setItem('tasks', JSON.stringify(newTasks));
+
       return { tasks: newTasks };
     });
   };
@@ -70,10 +94,19 @@ export default class App extends Component {
     });
   };
 
-  onNewTask = (description) => {
+  onNewTask = (description, minutes, seconds) => {
     this.setState((state) => {
       const newTasks = [...state.tasks];
-      newTasks.push({ id: ++this.lastId, description, completed: false, created: new Date() });
+      newTasks.push({
+        id: ++this.lastId,
+        description,
+        completed: false,
+        created: new Date(),
+        duration: minutes * 60 + seconds,
+      });
+
+      window.localStorage.setItem('tasks', JSON.stringify(newTasks));
+
       return { tasks: newTasks };
     });
   };
