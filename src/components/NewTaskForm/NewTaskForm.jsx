@@ -20,15 +20,11 @@ export default class NewTaskForm extends Component {
 
   onTimerChange = (event) => {
     event.preventDefault();
-    const element = event.target;
-    const stateTarget = element.matches('#new-task-form-minutes-id') ? 'minutes' : 'seconds';
-    if (
-      (element.value.match(/\d{1,2}/g) && Number(element.value) > 0 && Number(element.value) < 60) ||
-      element.value === ''
-    ) {
-      this.setState({ [stateTarget]: element.value });
+    const { name, value } = event.target;
+    if ((value.match(/\d{1,2}/g) && Number(value) > 0 && Number(value) < 60) || value === '') {
+      this.setState({ [name]: value });
     } else {
-      this.setState((state) => ({ [stateTarget]: state[stateTarget] }));
+      this.setState((state) => ({ [name]: state[name] }));
     }
   };
 
@@ -61,6 +57,7 @@ export default class NewTaskForm extends Component {
             Field containing task description
           </label>
           <input
+            name='minutes'
             id='new-task-form-minutes-id'
             className='new-task-form__timer'
             onChange={this.onTimerChange}
@@ -71,6 +68,7 @@ export default class NewTaskForm extends Component {
             Minutes
           </label>
           <input
+            name='seconds'
             id='new-task-form-seconds-id'
             className='new-task-form__timer'
             onChange={this.onTimerChange}
